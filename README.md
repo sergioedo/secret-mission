@@ -1,2 +1,5 @@
-# secret-mission
-Malandriner Secret Mission
+# Malandriners Secret Mission
+
+## Misión 1:
+
+El contador de ovejas...con Vue 3...
