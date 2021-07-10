@@ -1,6 +1,8 @@
 <template>
-  <div :style="greenFieldStyle">
-    <Sheep v-for="sheep in sheeps" :key="sheep.id" :sheep="sheep" />
+  <div class="container">
+    <div :style="greenFieldStyle">
+      <Sheep v-for="sheep in sheeps" :key="sheep.id" :sheep="sheep" />
+    </div>
   </div>
 </template>
 
@@ -26,3 +28,10 @@ const greenFieldStyle = computed(() => {
   }
 })
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+}
+</style>
