@@ -1,13 +1,18 @@
 <template>
   <div class="container">
     <div :style="greenFieldStyle">
-      <Sheep v-for="sheep in sheeps" :key="sheep.id" :sheep="sheep" />
+      <Sheep
+        v-for="sheep in sheeps"
+        :key="sheep.id"
+        :sheep="sheep"
+        @on-sheep-click="handleSheepClick"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps, toRefs, computed } from 'vue'
+import { defineProps, toRefs, computed, defineEmits } from 'vue'
 import Sheep from './Sheep.vue'
 
 const props = defineProps({
@@ -17,6 +22,11 @@ const props = defineProps({
 })
 
 const { fieldWidth, fieldHeight, sheeps } = toRefs(props)
+
+const emit = defineEmits(['onSheepClicked'])
+const handleSheepClick = (sheep) => {
+  emit('onSheepClicked', sheep)
+}
 
 const greenFieldStyle = computed(() => {
   return {

@@ -1,17 +1,19 @@
 <template>
   <div :style="getSheepStyle(sheep)">
-    <a :href="sheep.id">{{ sheep.id }} </a>
+    <a @click="$emit('onSheepClick', sheep)">{{ sheep.id }} </a>
   </div>
 </template>
 
 <script setup>
-import { defineProps, toRefs, computed } from 'vue'
+import { defineProps, toRefs, defineEmits } from 'vue'
 
 const props = defineProps({
   sheep: Object,
 })
 
 const { sheep } = toRefs(props)
+
+const emit = defineEmits(['onSheepClick'])
 
 const getSheepStyle = (sheep) => {
   return {

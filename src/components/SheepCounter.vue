@@ -2,12 +2,13 @@
   <h3 v-if="completed">Mission Complete! No more sheeps!</h3>
   <div class="sheep-counter">
     <p>Sheeps: {{ state.count }} / {{ maxCounter }}</p>
-    <button type="button" @click="handleCountClick">+</button>
+    <button type="button" @click="handleSheepClicked">+</button>
   </div>
   <SheepField
     :fieldWidth="fieldWidth"
     :fieldHeight="fieldHeight"
     :sheeps="state.sheeps"
+    @on-sheep-clicked="handleSheepClicked"
   />
 </template>
 
@@ -38,7 +39,7 @@ const state = reactive({
 const missionCompleted = () => state.count >= maxCounter.value
 const completed = computed(missionCompleted)
 
-const handleCountClick = () => {
+const handleSheepClicked = (sheep) => {
   if (!missionCompleted()) {
     state.count++
   }
