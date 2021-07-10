@@ -1,20 +1,39 @@
 <template>
+  <h3 v-if="completed">Mission Complete! No more sheeps!</h3>
   <div class="sheep-counter">
     <p>Sheeps: {{ state.count }} / {{ maxCounter }}</p>
     <button type="button" @click="handleCountClick">+</button>
   </div>
-  <h3 v-if="completed">Mission Complete! No more sheeps!</h3>
+  <SheepField
+    :fieldWidth="fieldWidth"
+    :fieldHeight="fieldHeight"
+    :sheeps="state.sheeps"
+  />
 </template>
 
 <script setup>
 import { defineProps, toRefs, reactive, computed } from 'vue'
+import SheepField from './SheepField.vue'
+import { createFlock } from '../utils/sheeps'
+
+const fieldWidth = 770
+const fieldHeight = 480
+const topMargin = 85
 
 const props = defineProps({
   maxCounter: Number,
 })
 
 const { maxCounter } = toRefs(props)
-const state = reactive({ count: 0 })
+const state = reactive({
+  count: 0,
+  sheeps: createFlock({
+    numSheeps: maxCounter.value,
+    fieldWidth,
+    fieldHeight,
+    topMargin,
+  }),
+})
 
 const missionCompleted = () => state.count >= maxCounter.value
 const completed = computed(missionCompleted)

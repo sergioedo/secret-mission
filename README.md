@@ -1,5 +1,11 @@
 # Malandriners Secret Mission
 
-## Misión 1:
+## Mission 1:
 
-El contador de ovejas...con Vue 3...
+Sheep counter with VueJS.
+
+Resources:
+
+- https://codepen.io/aitchiss/pen/QWyJZPv
+- https://freesvg.org/angry-sheep-icon-vector-clip-art
+- https://cool-math.co.uk/count-the-sheep/
