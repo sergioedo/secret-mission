@@ -1,18 +1,12 @@
 <template>
   <div :style="greenFieldStyle">
-    <div
-      class="sheep"
-      v-for="sheep in sheeps"
-      :key="sheep.id"
-      :style="getSheepStyle(sheep)"
-    >
-      <a :href="sheep.id">{{ sheep.id }} </a>
-    </div>
+    <Sheep v-for="sheep in sheeps" :key="sheep.id" :sheep="sheep" />
   </div>
 </template>
 
 <script setup>
 import { defineProps, toRefs, computed } from 'vue'
+import Sheep from './Sheep.vue'
 
 const props = defineProps({
   fieldWidth: Number,
@@ -31,15 +25,4 @@ const greenFieldStyle = computed(() => {
     backgroundImage: `url('./counting_sheep_game.png')`,
   }
 })
-
-const getSheepStyle = (sheep) => {
-  return {
-    position: 'absolute',
-    width: '50px',
-    height: '50px',
-    backgroundColor: 'red',
-    left: sheep.position.x + 'px',
-    top: sheep.position.y + 'px',
-  }
-}
 </script>
