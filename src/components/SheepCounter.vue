@@ -1,4 +1,7 @@
 <template>
+  <!-- <h3 v-if="completed"> -->
+  <!-- <h3 v-if="missionCompleted()"> -->
+  <!-- <h3 v-if="sheepsCounted.length >= maxCounter.value"> -->
   <h3 v-if="sheepsNotCounted.length === 0">
     Mission Complete! No more sheeps!
   </h3>
@@ -39,7 +42,7 @@ const state = reactive({
 const sheepsCounted = computed(() => state.sheeps.filter((s) => s.counted))
 const sheepsNotCounted = computed(() => state.sheeps.filter((s) => !s.counted))
 const missionCompleted = () => sheepsCounted.length >= maxCounter.value
-// const completed = computed(missionCompleted())  //not works!!!
+// const completed = computed(missionCompleted) //not works, not reactive dependencies!!!
 
 const handleSheepClicked = (sheep) => {
   if (!missionCompleted()) {
