@@ -1,5 +1,5 @@
-const SHEEP_WIDTH = 50
-const SHEEP_HEIGHT = 50
+const SHEEP_WIDTH = 90
+const SHEEP_HEIGHT = 90
 
 export const createFlock = ( {numSheeps, fieldWidth, fieldHeight, topMargin}) => {
     const sheeps = []
