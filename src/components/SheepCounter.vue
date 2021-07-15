@@ -1,13 +1,14 @@
 <template>
-  <h3 v-if="completed">Mission Complete! No more sheeps!</h3>
+  <h3 v-if="sheepsNotCounted.length === 0">
+    Mission Complete! No more sheeps!
+  </h3>
   <div class="sheep-counter">
-    <p>Sheeps: {{ state.count }} / {{ maxCounter }}</p>
-    <button type="button" @click="handleSheepClicked">+</button>
+    <p>Sheeps: {{ sheepsCounted.length }} / {{ maxCounter }}</p>
   </div>
   <SheepField
     :fieldWidth="fieldWidth"
     :fieldHeight="fieldHeight"
-    :sheeps="state.sheeps"
+    :sheeps="sheepsNotCounted"
     @on-sheep-clicked="handleSheepClicked"
   />
 </template>
@@ -27,7 +28,6 @@ const props = defineProps({
 
 const { maxCounter } = toRefs(props)
 const state = reactive({
-  count: 0,
   sheeps: createFlock({
     numSheeps: maxCounter.value,
     fieldWidth,
@@ -36,12 +36,15 @@ const state = reactive({
   }),
 })
 
-const missionCompleted = () => state.count >= maxCounter.value
-const completed = computed(missionCompleted)
+const sheepsCounted = computed(() => state.sheeps.filter((s) => s.counted))
+const sheepsNotCounted = computed(() => state.sheeps.filter((s) => !s.counted))
+const missionCompleted = () => sheepsCounted.length >= maxCounter.value
+// const completed = computed(missionCompleted())  //not works!!!
 
 const handleSheepClicked = (sheep) => {
   if (!missionCompleted()) {
-    state.count++
+    const sheepIndex = state.sheeps.findIndex((s) => s.id === sheep.id)
+    if (sheepIndex >= 0) state.sheeps[sheepIndex].counted = true
   }
 }
 </script>

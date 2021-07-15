@@ -11,7 +11,8 @@ export const createFlock = ( {numSheeps, fieldWidth, fieldHeight, topMargin}) =>
                 y: topMargin + Math.random() * (fieldHeight - SHEEP_HEIGHT - topMargin),
             },
             width: SHEEP_WIDTH,
-            height: SHEEP_HEIGHT
+            height: SHEEP_HEIGHT,
+            counted: false
         })
     }
     return sheeps
