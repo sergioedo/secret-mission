@@ -1,5 +1,6 @@
 <template>
   <h1>Secret Mission 1</h1>
+  <h3><i>Click on the sheeps head!</i></h3>
   <SheepCounter :maxCounter="100" />
 </template>
 
