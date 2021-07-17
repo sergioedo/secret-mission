@@ -41,6 +41,7 @@ const getSheepStyle = (sheep) => {
     '--fluff-size': sheep.height * (70 / 180) + 'px',
     '--ear-width': sheep.height * (15 / 180) + 'px',
     '--ear-height': sheep.height * (20 / 180) + 'px',
+    '--head-left-percentage': sheep.direction.x > 0 ? '90%' : '10%',
   }
 }
 </script>
@@ -105,7 +106,7 @@ const getSheepStyle = (sheep) => {
 
 .head {
   position: absolute;
-  left: 10%;
+  left: var(--head-left-percentage);
   top: 25%;
   transform: translateX(-50%);
   width: 40%;
@@ -124,6 +125,10 @@ const getSheepStyle = (sheep) => {
   border-radius: 50%;
   top: -5%;
   left: 5%;
+}
+
+.head:hover {
+  cursor: crosshair;
 }
 
 /* RIGHT ear */

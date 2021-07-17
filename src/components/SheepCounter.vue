@@ -17,9 +17,17 @@
 </template>
 
 <script setup>
-import { defineProps, toRefs, reactive, computed } from 'vue'
+import {
+  ref,
+  defineProps,
+  toRefs,
+  reactive,
+  computed,
+  onMounted,
+  onUnmounted,
+} from 'vue'
 import SheepField from './SheepField.vue'
-import { createFlock } from '../utils/sheeps'
+import { createFlock, moveSheeps } from '../utils/sheeps'
 
 const fieldWidth = 770
 const fieldHeight = 480
@@ -50,6 +58,16 @@ const handleSheepClicked = (sheep) => {
     if (sheepIndex >= 0) state.sheeps[sheepIndex].counted = true
   }
 }
+
+const intervalID = ref(0)
+onMounted(
+  () =>
+    (intervalID.value = setInterval(() => {
+      const { sheeps } = state
+      state.sheeps = moveSheeps({ sheeps, fieldWidth, fieldHeight, topMargin })
+    }, 40))
+)
+onUnmounted(() => clearInterval(intervalID))
 </script>
 
 <style scoped>
