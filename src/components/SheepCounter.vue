@@ -1,8 +1,9 @@
 <template>
+  <h3><i>Click on the sheeps head!</i></h3>
   <!-- <h3 v-if="completed"> -->
   <!-- <h3 v-if="missionCompleted()"> -->
   <!-- <h3 v-if="sheepsCounted.length >= maxCounter.value"> -->
-  <h3 v-if="sheepsNotCounted.length === 0">
+  <h3 class="title-red" v-if="sheepsNotCounted.length === 0">
     Mission Complete! No more sheeps!
   </h3>
   <div class="sheep-counter">
@@ -82,7 +83,7 @@ onUnmounted(() => clearInterval(intervalID))
   margin: 5px;
 }
 
-h3 {
+.title-red {
   color: firebrick;
 }
 
