@@ -1,7 +1,7 @@
 <template>
-  <h1>Secret Mission 1</h1>
+  <!-- <h1>Secret Mission 1</h1>
   <SheepCounter :maxCounter="1" />
-  <hr />
+  <hr /> -->
   <h1>Secret Mission 2</h1>
   <BulletinBoard />
 </template>
