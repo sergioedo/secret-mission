@@ -21,6 +21,8 @@ const getMessageStyle = (theme) => {
     borderColor: 'black',
     color,
     backgroundColor,
+    borderRadius: '10px',
+    margin: '3px',
   }
 }
 </script>

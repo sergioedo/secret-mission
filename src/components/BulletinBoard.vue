@@ -6,28 +6,24 @@
       :theme="message.theme"
       :key="index"
     >
-      {{ CaesarCipher(message.text, CAESAR_CODE) }}
+      {{ getTextMessage(message, cipher) }}
     </SecretMessage>
   </div>
 </template>
 
 <script setup>
 import SecretMessage from './SecretMessage.vue'
+import { defineProps, toRefs, computed } from 'vue'
 
-const messages = [
-  { text: 'Se venden burras en el sotano de la bodega', theme: 'dark' },
-  {
-    text: 'No pidas el plato especial del chef en el bar del pueblo',
-    theme: 'light',
-  },
-  {
-    text: 'Si has llegado a leer esto, estás muy aburrido.... :P',
-    theme: 'dark',
-  },
-]
+const props = defineProps({
+  messages: Array,
+  cipher: Boolean,
+})
+
+const { messages, cipher } = toRefs(props)
 
 const CAESAR_CODE = 17
-const CaesarCipher = (str, num) => {
+const getCaesarCipher = (str, num) => {
   str = str.toLowerCase()
 
   var result = ''
@@ -38,6 +34,11 @@ const CaesarCipher = (str, num) => {
     result += String.fromCharCode(charcode)
   }
   return result
+}
+
+const getTextMessage = (message, cipher) => {
+  if (cipher) return getCaesarCipher(message.text, CAESAR_CODE)
+  else return message.text
 }
 </script>
 
