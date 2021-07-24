@@ -1,12 +1,12 @@
 <template>
-  <!-- <h1>Secret Mission 1</h1>
+  <h1>Secret Mission 1</h1>
   <SheepCounter :maxCounter="100" />
-  <hr /> -->
-  <!-- <h1>Secret Mission 2</h1>
+  <hr />
+  <h1>Secret Mission 2</h1>
   <BulletinBoard :messages="sampleMessages" :cipher="true" />
-  <hr /> -->
+  <hr />
   <h1>Secret Mission 3</h1>
-  <BulletinBoard :messages="sampleMessages" :cipher="false" />
+  <BulletinBoard :messages="boardMessages" :cipher="false" />
 </template>
 
 <script setup>
@@ -14,19 +14,17 @@
 // Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
 import SheepCounter from './components/SheepCounter.vue'
 import BulletinBoard from './components/BulletinBoard.vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { testMessages, getMessages } from './utils/messages'
 
-const sampleMessages = ref([
-  { text: 'Se venden burras en el sotano de la bodega', theme: 'dark' },
-  {
-    text: 'No pidas el plato especial del chef en el bar del pueblo',
-    theme: 'light',
-  },
-  {
-    text: 'Si has llegado a leer esto, estás muy aburrido.... :P',
-    theme: 'dark',
-  },
-])
+const sampleMessages = ref(testMessages)
+const boardMessages = ref([])
+
+onMounted(() => {
+  getMessages().then((messages) => {
+    boardMessages.value = messages
+  })
+})
 </script>
 
 <style>
