@@ -6,7 +6,10 @@
   <BulletinBoard :messages="sampleMessages" :cipher="true" />
   <hr />
   <h1>Secret Mission 3</h1>
-  <BulletinBoard :messages="boardMessages" :cipher="false" />
+  <BulletinBoard :messages="boardMessages"/>
+  <hr />
+  <h1>Secret Mission 4</h1>
+  <BulletinBoard :messages="boardSecretMessages" />
 </template>
 
 <script setup>
@@ -19,10 +22,14 @@ import { testMessages, getMessages } from './utils/messages'
 
 const sampleMessages = ref(testMessages)
 const boardMessages = ref([])
+const boardSecretMessages = ref([])
 
 onMounted(() => {
   getMessages().then((messages) => {
     boardMessages.value = messages
+  })
+  getMessages(true).then((messages) => {
+    boardSecretMessages.value = messages
   })
 })
 </script>

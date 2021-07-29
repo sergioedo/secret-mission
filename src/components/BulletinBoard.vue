@@ -4,6 +4,7 @@
     <SecretMessage
       v-for="(message, index) in messages"
       :theme="message.theme"
+      :isSecret="message.isSecret"
       :key="index"
     >
       {{ getTextMessage(message, cipher) }}

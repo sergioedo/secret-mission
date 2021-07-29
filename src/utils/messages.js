@@ -12,14 +12,15 @@ export const testMessages = [
     },
   ]
 
-export const getMessages = () => {
+export const getMessages = (getSecretAttribute) => {
     return fetch(messagesURL)
         .then(res => res.json())
         .then(data => {
             return data.cards.map(card => {
                 return {
                     text: card.desc,
-                    theme: findTheme(card)
+                    theme: findTheme(card),
+                    isSecret: getSecretAttribute ? card.name.includes('secreto') : false,
                 }
               })
         })
