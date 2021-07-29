@@ -1,7 +1,7 @@
 <template>
   <section :style="getMessageStyle(theme)">
     <p v-if="showMessage"><slot></slot></p>
-    <p v-if="!showMessage"><img @click="onUrracaClick" :style="{ width: '50px'}" src='/urraca1.png'/></p>
+    <p v-if="!showMessage"><img @click="onUrracaClick" :style="{ width: '50px'}" :src="getUrracaImage()"/></p>
   </section>
 </template>
 
@@ -35,5 +35,11 @@ const getMessageStyle = (theme) => {
 
 const onUrracaClick = () => {
     showMessage.value = true
+}
+
+const getUrracaImage = () => {
+  const urracaImages = ['urraca1.png', 'urraca2.jpeg', 'urraca3.jpeg', 'urraca4.jpeg', 'urraca5.jpeg']
+  const imgIndex = Math.floor(Math.random() * urracaImages.length)
+  return `/${urracaImages[imgIndex]}`
 }
 </script>
